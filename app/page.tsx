@@ -1,4 +1,5 @@
 import HomeSections from "./components/home/HomeSections";
+import MobileMenu from "./components/MobileMenu";
 import { FLAG_ICONS } from "./lib/flag-icons";
 
 const navItems = [
@@ -85,39 +86,7 @@ function Header() {
               </picture>
             </span>
           </a>
-          <details className="mobile-menu">
-            <summary className="menu-button" aria-label="Открыть меню">
-              <img src="/assets/icons/ui/mobile-menu.svg" alt="" width="24" height="24" />
-            </summary>
-            <nav className="mobile-menu-panel" aria-label="Мобильная навигация">
-              {navItems.map((item) => (
-                <a href={item.href} key={item.label}>{item.label}</a>
-              ))}
-
-              <div className="mobile-menu-controls">
-                <details className="mobile-language-switcher">
-                  <summary aria-label="Выбрать язык">
-                    <span>
-                      <img className="language-flag language-flag-image" src="/assets/icons/ui/russia-flag.svg" alt="" width="20" height="20" />
-                      Рус
-                    </span>
-                    <ChevronIcon />
-                  </summary>
-                  <div className="mobile-language-options">
-                    <a className="is-active" href="?lang=ru" aria-current="true">
-                      <img className="language-flag language-flag-image" src="/assets/icons/ui/russia-flag.svg" alt="" width="20" height="20" />
-                      Русский
-                    </a>
-                    <a href="?lang=en">
-                      <span className="language-flag language-flag-en" aria-hidden="true" />
-                      English
-                    </a>
-                  </div>
-                </details>
-                <a className="mobile-track-link" href="#tracking">Отследить посылку</a>
-              </div>
-            </nav>
-          </details>
+          <MobileMenu items={navItems} />
         </div>
       </div>
     </header>

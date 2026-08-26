@@ -1,9 +1,11 @@
 import ShippingCalculator from "./ShippingCalculator";
 import WarehouseSlider from "./WarehouseSlider";
+import NewsSection from "./NewsSection";
 import styles from "./home-sections.module.css";
 
 const A = "/assets/figma/page/exact";
 const COMPANY_ASSETS = "/assets/images/company";
+const TELEGRAM_ASSETS = "/assets/images/telegram";
 
 const stats = [
   { number: "10+", text: "лет опыта в международной логистике — мы знаем, как быстро и безопасно доставлять ваши посылки", tone: "orange" },
@@ -14,10 +16,8 @@ const stats = [
 ];
 
 const reviewTitles = ["Наконец-то нашёл сервис...", "Заказывала одежду из...", "Прозрачные цены и отл...", "С EGLSHIP всё под контролем:"];
-const newsItems = Array.from({ length: 4 }, (_, index) => ({ id: index, date: "20/03/2026", title: "Изменение лимитов беспошлинного ввоза", text: "Небольшой текст в две строки, информация о том, о чём будет эта новость. Текст в 2 строки с многоточием..." }));
-
 function ParcelRail() {
-  return <div className={styles.parcelRail} aria-hidden="true"><img src="/assets/images/decor/parcel-divider.webp" alt="" width="3840" height="233" /></div>;
+  return <div className={styles.parcelRail} aria-hidden="true"><span className={styles.parcelRailTrack} /></div>;
 }
 
 function SectionHeading({ children, centered = false }: { children: React.ReactNode; centered?: boolean }) {
@@ -37,8 +37,7 @@ function WhyUsSection() {
         <div className={styles.statsGrid}>
           {stats.map((stat, index) => <article className={`${styles.statCard} ${styles[`stat${index + 1}`]} ${styles[stat.tone]}`} key={stat.number + index}><span className={styles.cardIndex}>0{index + 1}</span><p className={styles.statNumber}>{stat.number} {stat.suffix && <small>{stat.suffix}</small>}</p><p className={styles.statText}>{stat.text}</p></article>)}
           <span className={styles.whyEagle} aria-hidden="true">
-            <img className={styles.whyEagleBase} src="/assets/images/why-us/why-eagle.svg" alt="" width="255" height="312" />
-            <img className={styles.whyEagleArm} data-motion="eagle-wing" src="/assets/images/why-us/why-eagle.svg" alt="" width="255" height="312" />
+            <img className={styles.whyEagleImage} src="/assets/images/why-us/why-eagle.svg" alt="" width="255" height="312" />
           </span>
           <img className={styles.whyParcels} data-motion="parcel-stack" src="/assets/images/why-us/parcel-stack.svg" alt="" width="252" height="487" />
         </div>
@@ -55,16 +54,28 @@ function CompanySection() {
         <div className={styles.companyTitle} id="company-title"><strong>EGLSHIP</strong><span>ВАШ НАДЁЖНЫЙ ПАРТНЁР<br />В ФУЛФИЛМЕНТЕ</span></div>
         <div className={styles.mapPanel}>
           <div className={styles.mapMetrics}>
-            <p><strong><span className={styles.desktopValue}>4</span><span className={styles.mobileValue}>3</span></strong><span>СТРАТЕГИЧЕСКИ РАСПОЛОЖЕННЫХ <em>СКЛАДА В США</em></span></p>
-            <p><strong><span className={styles.desktopValue}>7</span><span className={styles.mobileValue}>4</span></strong><span><em>ПУНКТОВ ПРИЕМА</em> ТОВАРОВ В США</span></p>
-            <p><strong>100 000+</strong><span><em>ЗАКАЗОВ</em> ОБРАБОТАНО С НАШИХ СКЛАДОВ</span></p>
+            <p>
+              <strong><span className={styles.desktopValue}>4</span><span className={styles.mobileValue}>3</span></strong>
+              <span className={styles.desktopMetricLabel}>СТРАТЕГИЧЕСКИ РАСПОЛОЖЕННЫХ <em>СКЛАДА</em> В США</span>
+              <span className={styles.mobileMetricLabel}>СТРАТЕГИЧЕСКИ РАСПОЛОЖЕННЫХ <em>СКЛАДА В США</em></span>
+            </p>
+            <p>
+              <strong><span className={styles.desktopValue}>7</span><span className={styles.mobileValue}>4</span></strong>
+              <span className={styles.desktopMetricLabel}><em>ПУНКТОВ ПРИЕМА</em> ТОВАРОВ В США</span>
+              <span className={styles.mobileMetricLabel}>ПУНКТА ПРИЕМА ЗАКАЗОВ <em>В США</em></span>
+            </p>
+            <p>
+              <strong>100 000+</strong>
+              <span className={styles.desktopMetricLabel}><em>ЗАКАЗОВ</em> ОБРАБОТАНО С НАШИХ СКЛАДОВ</span>
+              <span className={styles.mobileMetricLabel}><em>ЗАКАЗОВ</em> ОБРАБОТАНО С НАШИХ СКЛАДОВ</span>
+            </p>
           </div>
           <div className={styles.mapVisual}>
             <img className={styles.usaMap} src={`${A}/map-exact.webp`} alt="Карта пунктов приёма EGLSHIP в США" width="1240" height="760" />
             <span className={styles.mapEagleGlow} aria-hidden="true" />
             <img className={styles.mapEagle} src={`${COMPANY_ASSETS}/map-eagle.svg`} alt="" width="327" height="423" />
             <img className={styles.mapSparkle} src={`${COMPANY_ASSETS}/map-sparkle.svg`} alt="" width="115" height="115" />
-            <div className={styles.mapPins} aria-hidden="true">{Array.from({ length: 6 }, (_, index) => <img key={index} src={`${COMPANY_ASSETS}/map-pin.svg`} alt="" width="125" height="188" />)}</div>
+            <div className={styles.mapPins} aria-hidden="true">{Array.from({ length: 7 }, (_, index) => <img key={index} src={`${COMPANY_ASSETS}/map-pin.svg`} alt="" width="125" height="188" />)}</div>
             <div className={`${styles.mapInfo} ${styles.mapInfoOne}`}><b>PHILADELPHIA <em>Reception point</em></b><span><img src={`${A}/map-card-icon.svg`} alt="" />6158 Lemona Ave, Van Nuys, CA</span></div>
             <div className={`${styles.mapInfo} ${styles.mapInfoTwo}`}><b>PHILADELPHIA <em>Reception point</em></b><span><img src={`${A}/map-card-icon.svg`} alt="" />6158 Lemona Ave, Van Nuys, CA</span></div>
           </div>
@@ -78,14 +89,28 @@ function CompanySection() {
 function TelegramSection() {
   return (
     <section className={styles.telegramSection} aria-labelledby="telegram-title">
-      <SectionHeading centered><span id="telegram-title">Ваш персональный помощник<br />в</span> <em>Telegram</em></SectionHeading>
+      <SectionHeading centered><span id="telegram-title">Ваш персональный помощник в </span><em>Telegram</em></SectionHeading>
       <div className={styles.telegramScene}>
-        <img className={styles.telegramEagle} src={`${A}/telegram-eagle.webp`} alt="" width="612" height="629" />
-        <img className={styles.paperPlane} src={`${A}/telegram-plane.webp`} alt="" width="628" height="182" />
-        <div className={`${styles.speech} ${styles.speechOne}`}>Отслеживайте статус<br />посылки в реальном<br />времени</div>
-        <div className={`${styles.speech} ${styles.speechTwo}`}>Получайте уведомления<br />о поступлении товара<br />на склад</div>
-        <div className={styles.telegramMessages} aria-label="Примеры уведомлений Telegram"><p>Добрый день, ваша посылка готова к оплате<br />Сумма: 123,00 USD <time>4:00pm ✓✓</time></p><p>Добрый день, ваша посылка приехала)<br />Номер посылки 777 <time>8:00pm ✓✓</time></p></div>
-        <a className={styles.telegramButton} href="#telegram"><img src={`${A}/telegram-button.svg`} alt="" width="24" height="24" />Перейти в TELEGRAM BOT</a>
+        <img className={styles.telegramBackground} src={`${TELEGRAM_ASSETS}/telegram-room.webp`} alt="" width="3834" height="1912" />
+        <img className={styles.telegramEagle} src={`${TELEGRAM_ASSETS}/assistant-eagle.svg`} alt="" width="612" height="629" />
+        <picture>
+          <source media="(max-width: 700px)" srcSet={`${TELEGRAM_ASSETS}/paper-plane-mobile.svg`} />
+          <source media="(max-width: 1700px)" srcSet={`${TELEGRAM_ASSETS}/paper-plane-tablet.svg`} />
+          <img className={styles.paperPlane} src={`${TELEGRAM_ASSETS}/paper-plane-desktop.svg`} alt="" width="628" height="182" />
+        </picture>
+        <div className={`${styles.speech} ${styles.speechOne}`}>
+          <picture><source media="(max-width: 700px)" srcSet={`${TELEGRAM_ASSETS}/speech-track-mobile.svg`} /><img src={`${TELEGRAM_ASSETS}/speech-track-desktop.svg`} alt="" /></picture>
+          <p>Отслеживайте статус<br />посылки в реальном<br />времени</p>
+        </div>
+        <div className={`${styles.speech} ${styles.speechTwo}`}>
+          <picture><source media="(max-width: 700px)" srcSet={`${TELEGRAM_ASSETS}/speech-arrival-mobile.svg`} /><img src={`${TELEGRAM_ASSETS}/speech-arrival-desktop.svg`} alt="" /></picture>
+          <p>Получайте уведомления<br />о поступлении товара<br />на склад</p>
+        </div>
+        <div className={styles.telegramMessages} aria-label="Примеры уведомлений Telegram">
+          <img className={styles.telegramMessageReady} src={`${TELEGRAM_ASSETS}/message-payment.svg`} alt="Добрый день, ваша посылка готова к оплате. Сумма: 123,00 USD" />
+          <picture><source media="(max-width: 1700px)" srcSet={`${TELEGRAM_ASSETS}/message-arrived-tablet.svg`} /><img className={styles.telegramMessageArrived} src={`${TELEGRAM_ASSETS}/message-arrived-desktop.svg`} alt="Добрый день, ваша посылка приехала. Номер посылки 777" /></picture>
+        </div>
+        <a className={styles.telegramButton} href="#telegram"><img src={`${TELEGRAM_ASSETS}/telegram-icon.svg`} alt="" width="24" height="24" />Перейти в TELEGRAM BOT</a>
       </div>
       <ParcelRail />
     </section>
@@ -98,22 +123,25 @@ function ReviewsSection() {
       <div className={styles.pageContainer}>
         <SectionHeading centered><span id="reviews-title">О нас говорят</span> <em>лидеры мнений</em></SectionHeading>
         <div className={styles.reviewsIntro}><strong>СРЕДНЯЯ ОЦЕНКА — 4.87 ИЗ 5.</strong><div><p>За 10+ лет десятки тысяч наших клиентов из России, Беларуси, Казахстана оформили заказ товаров из США и оставили более 10000 отзывов.</p><p>Посмотрите обзоры на наш сервис от популярных блогеров и экспертов в социальных сетях.</p></div></div>
-        <div className={styles.reviewGrid}>{reviewTitles.map((title) => <article className={styles.reviewCard} key={title}><img className={styles.reviewImage} src="/assets/images/reviews/review-placeholder.svg" alt="Заглушка видеоотзыва клиента EGLSHIP" width="632" height="1154" /><div className={styles.reviewCopy}><h3>{title}</h3><footer><img src="/assets/images/reviews/avatar-placeholder.svg" alt="" width="48" height="48" /><span><strong>Виктория, Москва</strong><small>Блогер</small></span><time dateTime="2026-02-26">26.02.2026</time></footer></div></article>)}</div>
+        <div className={styles.reviewGrid} aria-label="Отзывы клиентов EGLSHIP">
+          {reviewTitles.map((title) => (
+            <article className={styles.reviewCard} key={title}>
+              <img className={styles.reviewImage} src="/assets/images/reviews/review-placeholder.svg" alt="Заглушка видеоотзыва клиента EGLSHIP" width="632" height="1154" />
+              <div className={styles.reviewCopy}>
+                <h3>{title}</h3>
+                <footer>
+                  <img src="/assets/images/reviews/avatar-placeholder.svg" alt="" width="49" height="49" />
+                  <span>
+                    <strong>Виктория, Москва</strong>
+                    <span className={styles.reviewMeta}><small>Блогер</small><time dateTime="2026-02-26">26.02.2026</time></span>
+                  </span>
+                </footer>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
       <ParcelRail />
-    </section>
-  );
-}
-
-function NewsSection() {
-  return (
-    <section className={styles.newsSection} id="news" aria-labelledby="news-title">
-      <div className={styles.pageContainer}>
-        <SectionHeading><span id="news-title">Новости</span></SectionHeading>
-        <p className={styles.newsLead}>Самая свежая и важная информация о работе склада, сайта, наших партнеров и американских магазинов.</p>
-        <div className={styles.newsGrid}>{newsItems.map((item) => <article className={styles.newsCard} key={item.id}><div className={styles.newsText}><time dateTime="2026-03-20">{item.date}</time><h3>{item.title}</h3><p>{item.text}</p></div><a href="#news">Читать</a></article>)}</div>
-        <a className={styles.secondaryButton} href="#news">Читать все новости</a>
-      </div>
     </section>
   );
 }
@@ -135,22 +163,38 @@ function Footer() {
         <div className={styles.questionFormCluster}>
           <img className={styles.footerEagle} src="/assets/images/footer/form-eagle.svg" alt="" width="256" height="348" />
           <form className={styles.questionForm} action="#footer">
-            <h2><img src={`${A}/footer-question.svg`} alt="" /><b>ОСТАЛИСЬ ВОПРОСЫ?</b><span>Заинтересовало<br />предложение?</span></h2>
-            <p>Получите обратный звонок или сообщение от нашей команды, и мы обсудим ваши потребности в доставке. Напишите нам.</p>
-            <div className={styles.formRow}><label>Имя<input name="name" type="text" placeholder="Сергей" /></label><label>Номер телефона<input name="phone" type="tel" placeholder="+7 (911) 234-56-77" /></label></div>
-            <label>Email<input name="email" type="email" placeholder="info@eglship.com" /></label>
-            <label className={styles.checkbox}><input type="checkbox" defaultChecked /><span>Я соглашаюсь с условиями работы и политикой обработки персональных данных</span></label>
-            <label className={styles.checkbox}><input type="checkbox" /><span>Я подтверждаю, что введённая мной информация является точной и была получена мной законным путем</span></label>
+            <div className={styles.formIntro}>
+              <img src={`${A}/footer-question.svg`} alt="" />
+              <div>
+                <h2><b>ОСТАЛИСЬ ВОПРОСЫ?</b><span>Заинтересовало<br />предложение?</span></h2>
+                <p>
+                  <span className={styles.formCopyDesktop}>Получите обратный звонок или сообщение от нашей команды, и мы обсудим ваши потребности в доставке. Напишите нам.</span>
+                  <span className={styles.formCopyMobile}>Оставьте ваши контакты и мы свяжемся с вами в ближайшее время!</span>
+                </p>
+              </div>
+            </div>
+            <div className={styles.formFields}>
+              <div className={styles.formRow}><label>Имя<input name="name" type="text" placeholder="Сергей" /></label><label>Номер телефона<input name="phone" type="tel" placeholder="+7 (911) 234-56-77" /></label></div>
+              <label>Email<input name="email" type="email" placeholder="info@eglship.com" /></label>
+              <div className={styles.checkboxGroup}>
+                <label className={styles.checkbox}><input type="checkbox" defaultChecked /><span>Я соглашаюсь с условиями работы и политикой обработки персональных данных</span></label>
+                <label className={styles.checkbox}><input type="checkbox" /><span>Я подтверждаю, что введённая мной информация является точной и была получена мной законным путем</span></label>
+              </div>
+            </div>
             <button type="submit">Отправить запрос</button>
           </form>
         </div>
       </div>
       <div className={styles.footerBottom}>
-        <a className={styles.footerBrand} href="#top" aria-label="EGLSHIP — вернуться наверх"><img src="/assets/figma/logo.webp" alt="EGLSHIP" width="223" height="70" /></a>
-        <nav aria-label="Навигация в подвале"><a href="#top">О нас</a><a href="#locations">Локации</a><a href="#news">Новости</a><a href="#calculator">Стоимость услуг</a><a href="#footer">Предложения и замечания</a><a href="#footer">Сотрудничество</a></nav>
-        <div className={styles.footerApps} id="download"><strong>Скачайте мобильное приложение</strong><p>Загрузите мобильное приложение для более быстрого отслеживания и получения обновлений.</p><div><StoreBadge store="apple" /><StoreBadge store="google" /></div></div>
-        <small className={styles.copyright}>© Eglship 2026</small>
-        <div className={styles.legal}><a href="#footer">Публичная оферта</a><a href="#footer">Политика конфиденциальности</a><a href="#footer">Правила сервиса</a></div>
+        <div className={styles.footerMain}>
+          <a className={styles.footerBrand} href="#top" aria-label="EGLSHIP — вернуться наверх"><img src="/assets/figma/logo.webp" alt="EGLSHIP" width="223" height="70" /></a>
+          <nav aria-label="Навигация в подвале"><a href="#top">О нас</a><a href="#locations">Локации</a><a href="#news">Новости</a><a href="#calculator">Стоимость услуг</a><a href="#footer">Предложения и замечания</a><a href="#footer">Сотрудничество</a></nav>
+          <div className={styles.footerApps} id="download"><strong>Скачайте мобильное приложение</strong><p>Загрузите мобильное приложение для более быстрого отслеживания и получения обновлений.</p><div><StoreBadge store="apple" /><StoreBadge store="google" /></div></div>
+        </div>
+        <div className={styles.footerDocuments}>
+          <small className={styles.copyright}>© Eglship 2026</small>
+          <div className={styles.legal}><a href="#footer">Публичная оферта</a><a href="#footer">Политика конфиденциальности</a><a href="#footer">Правила сервиса</a></div>
+        </div>
       </div>
     </footer>
   );
