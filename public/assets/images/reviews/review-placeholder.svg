@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 632 1154" role="img" aria-labelledby="title desc">
+  <title id="title">Заглушка изображения автора отзыва</title>
+  <desc id="desc">Нейтральный силуэт пользователя на светлом фоне</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f6fa"/>
+      <stop offset="1" stop-color="#e8ebf1"/>
+    </linearGradient>
+    <linearGradient id="avatar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9afb9"/>
+      <stop offset="1" stop-color="#737b87"/>
+    </linearGradient>
+  </defs>
+  <rect width="632" height="1154" rx="28" fill="url(#background)"/>
+  <circle cx="316" cy="430" r="154" fill="#fff" opacity=".82"/>
+  <circle cx="316" cy="404" r="91" fill="url(#avatar)"/>
+  <path d="M134 828c0-150 81-244 182-244s182 94 182 244v82H134z" fill="url(#avatar)"/>
+  <circle cx="104" cy="148" r="52" fill="#e9551b" opacity=".12"/>
+  <circle cx="536" cy="236" r="78" fill="#e9551b" opacity=".08"/>
+  <path d="M194 988h244" fill="none" stroke="#cfd4dc" stroke-linecap="round" stroke-width="18"/>
+  <path d="M240 1032h152" fill="none" stroke="#d9dde4" stroke-linecap="round" stroke-width="14"/>
+</svg>
