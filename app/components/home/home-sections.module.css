@@ -531,6 +531,11 @@
   .whyEagle { top: 0; left: var(--top-card-width); width: 205px; height: 250px; }
 }
 
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .whySection { overflow: visible; }
+  .whySection > .parcelRail .parcelRailTrack { bottom: -24px; }
+}
+
 @media (max-width: 1024px) and (min-width: 993px) {
   .whySection { overflow: visible; }
   .whySection > .parcelRail .parcelRailTrack { bottom: 30px; }
