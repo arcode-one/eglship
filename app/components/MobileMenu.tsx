@@ -75,7 +75,7 @@ export default function MobileMenu({ items }: { items: NavigationItem[] }) {
                 Русский
               </a>
               <a href="?lang=en" onClick={closeMenu}>
-                <span className="language-flag language-flag-en" aria-hidden="true" />
+                <img className="language-flag language-flag-image" src="/assets/icons/ui/english-flag.svg" alt="" width="20" height="20" />
                 English
               </a>
             </div>

@@ -28,14 +28,26 @@ https://USERNAME.github.io/REPOSITORY/
 
 Workflow автоматически определяет имя репозитория и добавляет нужный префикс к статическим файлам. Локальная команда `npm run dev` продолжает работать на обычном адресе без префикса.
 
+## SEO и собственный домен
+
+Для временного адреса GitHub Pages canonical, Open Graph, `robots.txt` и `sitemap.xml` формируются автоматически. После подключения основного домена добавьте в **Settings → Secrets and variables → Actions → Variables**:
+
+- `SITE_URL` — полный адрес сайта без завершающего слеша, например `https://eglship.com`;
+- `GOOGLE_SITE_VERIFICATION` — токен Google Search Console, если он уже получен;
+- `YANDEX_SITE_VERIFICATION` — токен Яндекс Вебмастера, если он уже получен.
+
+После изменения переменных повторно запустите workflow `Deploy to GitHub Pages`.
+
 ## Локальная проверка Pages-сборки
 
 Для репозитория `eglship`:
 
 ```powershell
 $env:NEXT_PUBLIC_BASE_PATH = "/eglship"
+$env:NEXT_PUBLIC_SITE_URL = "https://USERNAME.github.io/eglship"
 npm run build
 Remove-Item Env:NEXT_PUBLIC_BASE_PATH
+Remove-Item Env:NEXT_PUBLIC_SITE_URL
 ```
 
 Готовые файлы появятся в папке `out`.

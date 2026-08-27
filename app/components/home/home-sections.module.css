@@ -9,7 +9,7 @@
 .sectionHeading em { color: #e9551b; font-style: normal; }
 .centered { text-align: center; }
 
-.parcelRail { position: absolute; z-index: 8; right: 0; bottom: 0; left: 0; height: 126px; overflow: visible; pointer-events: none; }
+.parcelRail { position: absolute; z-index: 8; right: 0; bottom: 0; left: 0; height: 126px; overflow-x: clip; overflow-y: visible; pointer-events: none; }
 .parcelRailTrack { position: absolute; left: 50%; bottom: 0; width: 2260px; max-width: none; height: 126px; display: block; background: url("/assets/images/decor/boxes-line.webp") center bottom / 100% 100% no-repeat; transform: translateX(-50%); transform-origin: center; }
 .whySection > .parcelRail .parcelRailTrack { transform: translateX(-50%) rotate(-4deg); }
 
@@ -86,7 +86,7 @@
 
 /* Company */
 .companySection { height: auto; }
-.companyTitle { container-type: inline-size; height: 107px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 40px; text-align: left; }
+.companyTitle { container-type: inline-size; height: 107px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 40px; margin: 0; text-align: left; }
 .companyTitle strong { justify-self: end; width: min(504px, 100%); color: #e9551b; font-size: 120px; font-weight: 800; line-height: .89; white-space: nowrap; }
 .companyTitle > span { width: 100%; padding-top: 0; color: #353c41; font-size: 36px; font-weight: 800; line-height: 1.2; }
 .mapPanel { position: relative; container-type: inline-size; width: 100%; height: auto; aspect-ratio: 1200 / 575; margin-top: 40px; overflow: hidden; border-radius: 20px; background: #f5f6fa; }
@@ -552,7 +552,7 @@
   .whySection .pageContainer { height: auto; }
   .whySection .sectionHeading { width: 100%; text-align: center; }
   .whySection > .parcelRail { bottom: 0; }
-  .whySection > .parcelRail .parcelRailTrack { bottom: 84px; width: clamp(887px, 126.6vw, 1256px); height: clamp(49px, 7.06vw, 70px); background-size: 100% 100%; }
+  .whySection > .parcelRail .parcelRailTrack { bottom: 84px; width: clamp(1148px, 158vw, 1621px); height: clamp(64px, 8.79vw, 90px); background-size: 100% 100%; }
   .statsGrid { height: auto; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
   .statCard { position: relative; inset: auto; flex: none; border-radius: 20px; }
   .stat1, .stat2 { width: min(476px, 100%); height: 280px; justify-content: space-between; padding: 20px; }
@@ -577,8 +577,8 @@
   .telegramEagle { top: 270px; left: calc(50% - 250px); width: 460px; height: 473px; }
   .paperPlane { top: 520px; left: calc(50% - 80px); width: 280px; height: auto; }
   .speech { font-size: 15px; }
-  .speechOne { top: 125px; left: calc(50% - 240px); }
-  .speechTwo { top: 255px; left: calc(50% - 100px); }
+  .speechOne { top: 125px; left: calc(50% - 140px); }
+  .speechTwo { top: 255px; left: calc(50% - 20px); }
   .telegramMessages { display: none; }
   .telegramButton { top: 635px; width: min(380px, calc(100% - 32px)); height: 58px; padding: 16px 28px; }
   .telegramSection > .parcelRail { bottom: -6px; height: 126px; }
@@ -637,10 +637,10 @@
 
 @media (max-width: 700px) {
   .parcelRail { height: 74px; }
-  .parcelRailTrack { bottom: 0; width: 700px; height: 64px; background-image: url("/assets/images/decor/parcel-segment.webp"); background-position: left bottom; background-size: auto 64px; background-repeat: repeat-x; }
+  .parcelRailTrack { bottom: 0; width: 1148px; height: 64px; background-image: url("/assets/images/decor/boxes-line.webp"); background-position: center bottom; background-size: 100% 100%; background-repeat: no-repeat; }
   .whySection { padding-bottom: 120px; }
   .whySection > .parcelRail { height: 112px; }
-  .whySection > .parcelRail .parcelRailTrack { bottom: 28px; width: 700px; height: 64px; background-size: auto 64px; }
+  .whySection > .parcelRail .parcelRailTrack { bottom: 28px; width: 1148px; height: 64px; background-size: 100% 100%; }
 
   .companySection { height: auto; }
   .companyTitle { height: 159px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 20px; padding: 0; text-align: left; }
@@ -698,7 +698,7 @@
   .telegramEagle { top: 243px; left: calc(50% - 211.5px); width: 388px; height: 399px; }
   .paperPlane { top: 463px; left: 50%; width: 239px; height: 69px; transform: translateX(-50%); }
   .speech { font-size: 12px; line-height: 1.3; }
-  .speechOne { top: 107.832px; left: calc(50% - 62.5px); width: 206.873px; height: 88.804px; }
+  .speechOne { top: 107.832px; left: calc(50% - 90px); width: 206.873px; height: 88.804px; }
   .speechOne img { top: -4.02px; left: -15.44px; width: 222px; height: 112px; }
   .speechOne p { top: 19.14px; left: 31.49px; width: 152.53px; }
   .speechTwo { top: 196.832px; left: calc(50% - 42.5px); width: 219.303px; height: 99.225px; }
@@ -707,7 +707,7 @@
   .telegramMessages { display: none; }
   .telegramButton { top: 589.832px; right: auto; bottom: auto; left: 50%; width: min(343px, calc(100% - 32px)); min-width: 0; height: 48px; padding: 12px 20px; font-size: 18px; transform: translateX(-50%); }
   .telegramSection > .parcelRail { bottom: 3.72px; height: 64px; }
-  .telegramSection > .parcelRail .parcelRailTrack { bottom: 0; width: 743px; height: 64px; background-size: auto 64px; }
+  .telegramSection > .parcelRail .parcelRailTrack { bottom: 0; width: 1148px; height: 64px; background-size: 100% 100%; }
 
   .reviewsSection { height: auto; padding-bottom: 0; }
   .reviewsSection .sectionHeading { width: 100%; margin: 0; font-size: 28px; line-height: 1.1; letter-spacing: 0; text-align: left; text-transform: uppercase; }
@@ -787,6 +787,13 @@
   .footerDocuments { height: auto; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
   .copyright { font-size: 14px; }
   .legal { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; font-size: 14px; }
+}
+
+@media (min-width: 431px) and (max-width: 700px) {
+  .telegramBackground {
+    left: 0;
+    transform: none;
+  }
 }
 
 @media (max-width: 767px) {

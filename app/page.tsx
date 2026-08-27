@@ -1,6 +1,7 @@
 import HomeSections from "./components/home/HomeSections";
 import MobileMenu from "./components/MobileMenu";
 import { FLAG_ICONS } from "./lib/flag-icons";
+import { absoluteUrl, siteDescription, siteName, siteUrl } from "./lib/site";
 
 const navItems = [
   { label: "О нас", href: "#top" },
@@ -20,6 +21,46 @@ const tariffs = [
   { code: "kg", flag: FLAG_ICONS.kg, to: "В Кыргызстан", price: "ОТ 12 $/КГ" },
   { code: "uz", flag: FLAG_ICONS.uz, to: "В Узбекистан", price: "ОТ 12 $/КГ" },
 ];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: siteName,
+      url: siteUrl,
+      logo: absoluteUrl("/assets/figma/logo.webp"),
+      description: siteDescription,
+      email: "info@eglship.com",
+      telephone: "+19112345677",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+19112345677",
+        contactType: "customer support",
+        availableLanguage: ["Russian", "English"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: siteName,
+      description: siteDescription,
+      inLanguage: "ru-RU",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}/#delivery-service`,
+      name: "Доставка товаров из США",
+      serviceType: "Международная доставка и фулфилмент товаров из США",
+      description: siteDescription,
+      provider: { "@id": `${siteUrl}/#organization` },
+      areaServed: ["Россия", "Беларусь", "Казахстан", "Кыргызстан", "Узбекистан", "Армения"],
+    },
+  ],
+};
 
 function ChevronIcon() {
   return (
@@ -69,7 +110,7 @@ function Header() {
                 <span><strong>RU</strong><small>Русский</small></span>
               </a>
               <a href="?lang=en">
-                <span className="language-flag language-flag-en" aria-hidden="true" />
+                <img className="language-flag language-flag-image" src="/assets/icons/ui/english-flag.svg" alt="" width="20" height="20" />
                 <span><strong>EN</strong><small>English</small></span>
               </a>
             </div>
@@ -138,6 +179,10 @@ function TariffTicker() {
 export default function Home() {
   return (
     <main id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+      />
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-visual">
           <div className="hero-background" aria-hidden="true" />

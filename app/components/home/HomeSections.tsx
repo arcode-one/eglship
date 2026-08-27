@@ -51,7 +51,7 @@ function CompanySection() {
   return (
     <section className={styles.companySection} id="locations" aria-labelledby="company-title">
       <div className={styles.pageContainer}>
-        <div className={styles.companyTitle} id="company-title"><strong>EGLSHIP</strong><span>ВАШ НАДЁЖНЫЙ ПАРТНЁР<br />В ФУЛФИЛМЕНТЕ</span></div>
+        <h2 className={styles.companyTitle} id="company-title"><strong>EGLSHIP</strong><span>ВАШ НАДЁЖНЫЙ ПАРТНЁР<br />В ФУЛФИЛМЕНТЕ</span></h2>
         <div className={styles.mapPanel}>
           <div className={styles.mapMetrics}>
             <p>
@@ -126,7 +126,7 @@ function ReviewsSection() {
         <div className={styles.reviewGrid} aria-label="Отзывы клиентов EGLSHIP">
           {reviewTitles.map((title) => (
             <article className={styles.reviewCard} key={title}>
-              <img className={styles.reviewImage} src="/assets/images/reviews/review-placeholder.svg" alt="Заглушка видеоотзыва клиента EGLSHIP" width="632" height="1154" />
+              <img className={styles.reviewImage} src="/assets/images/reviews/review-placeholder.svg" alt="Видеоотзыв клиента о доставке EGLSHIP" width="632" height="1154" />
               <div className={styles.reviewCopy}>
                 <h3>{title}</h3>
                 <footer>
@@ -147,7 +147,7 @@ function ReviewsSection() {
 }
 
 function ShoppingCta() {
-  return <section className={styles.ctaOuter} aria-labelledby="cta-title"><div className={styles.ctaSection}><div className={styles.ctaPanel}><h2 id="cta-title">Готовы к шоппингу в США?</h2><p>Заменить текст. 2 минуты и у вас личный адрес в США и вы можете безопасно получать покупки из американских магазинов: объединяем посылки, оформляем доставку и сопровождаем груз на каждом этапе.</p><a href="#register">Получить адрес в США</a><div className={styles.ctaTrust}><span><img src="/assets/icons/cta/clock.svg" alt="" />2 минуты на регистрацию</span><span><img src="/assets/icons/cta/safety-certificate.svg" alt="" />Без подписок и скрытых платежей</span></div></div></div></section>;
+  return <section className={styles.ctaOuter} aria-labelledby="cta-title"><div className={styles.ctaSection}><div className={styles.ctaPanel}><h2 id="cta-title">Готовы к шоппингу в США?</h2><p>За 2 минуты получите личный адрес в США и безопасно заказывайте товары в американских магазинах. Мы объединим посылки, оформим доставку и сопроводим груз на каждом этапе.</p><a href="#register">Получить адрес в США</a><div className={styles.ctaTrust}><span><img src="/assets/icons/cta/clock.svg" alt="" />2 минуты на регистрацию</span><span><img src="/assets/icons/cta/safety-certificate.svg" alt="" />Без подписок и скрытых платежей</span></div></div></div></section>;
 }
 
 function Footer() {

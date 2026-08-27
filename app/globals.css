@@ -99,15 +99,14 @@ img, svg, picture {
 .language-menu a:hover, .language-menu a.is-active { background: rgba(255,255,255,.1); }
 .language-menu a > span:last-child { display: grid; }
 .language-menu small { opacity: .7; }
-.language-flag-en { border-radius: 50%; background: #21468b; }
 
 .track-link, .login-link { min-height: 49px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 18px; font-weight: 800; line-height: 1.3; }
 .track-link { padding: 12px 20px; color: #fff; background: var(--orange); transition: background-color .2s ease; }
-.login-link { gap: 8px; padding: 11px 16px 11px 20px; border: 1px solid var(--orange); color: #fff; background: rgba(255,255,255,.04); }
+.login-link { gap: 8px; padding: 11px 16px 11px 20px; border: 1px solid var(--orange); color: #fff; background: rgba(255,255,255,.04); transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
 .login-icon { width: 24px; height: 24px; display: grid; place-items: center; }
 .login-icon picture, .login-icon img { display: block; width: 24px; height: 24px; }
 .track-link:hover, .track-link:focus-visible, .tracking-form button:hover, .tracking-form button:focus-visible { background: #f05c22; }
-.login-link:hover { border-color: #ff7841; background: rgba(233,85,27,.08); }
+.login-link:hover, .login-link:focus-visible { border-color: #ff7841; background: rgba(233,85,27,.08); }
 .mobile-menu { position: relative; display: none; }
 .menu-button { width: 49px; height: 49px; min-height: 49px; display: none; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.45); border-radius: 12px; outline: none; background: rgba(255,255,255,.18); cursor: pointer; list-style: none; transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
 .menu-button::-webkit-details-marker { display: none; }
@@ -219,6 +218,21 @@ img, svg, picture {
   .header-actions { gap: 10px; }
   .track-link { padding-inline: 16px; }
   .login-link { padding: 11px 12px 11px 14px; }
+}
+
+@media (max-width: 1024px) and (min-width: 701px) {
+  .login-link {
+    border-color: rgba(255,255,255,.45);
+    background: rgba(255,255,255,.18);
+  }
+  .login-link:hover, .login-link:focus-visible {
+    border-color: #e9551b;
+    background: rgba(245,246,250,.2);
+  }
+  .login-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(233,85,27,.22);
+  }
 }
 
 @media (min-width: 1151px) and (max-width: 1439px) {
